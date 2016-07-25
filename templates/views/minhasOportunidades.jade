@@ -1,0 +1,60 @@
+extends ../layouts/default
+
+block intro
+	.container
+		.row
+			.col-md-12.text-center
+				if oportunidades.length
+					.page-header
+						h2.orange Suas Oportunidades Cadastradas
+				else
+					.jumbotron.text-center
+						h3(style="margin-bottom:0;margin-top:0;") Nenhuma oportunidade cadastrada.
+
+block content
+	.container
+		.row
+			if oportunidades.length
+				.col-md-12
+					form(method='post', id='frmOportunidade').form-horizontal
+						input(type='hidden', name='action', value='manutencao')
+						input(type='hidden', name='id', id='id', value='')
+						input(type='hidden', name='empresa', value=empresa)
+						table(id="tbPendencia", class="false table items-list")
+							tr
+								th Título da oportunidade
+								th Tipo de Oportunidade
+								th Publicado em:
+								th Breve Descrição
+								th Ativo
+							each oportunidade, i in oportunidades
+								tr.side-link(value=oportunidade.nome)
+									td #{oportunidade.nome}
+									td #{oportunidade.tipoOportunidade}
+									td #{oportunidade._.createdAt.format('DD')} de #{oportunidade._.createdAt.format('MMMM')} de #{oportunidade._.createdAt.format('YYYY')}
+									td #{oportunidade.breveDescricao}
+									td 
+										input(type='checkbox' name='isAtivo' checked = oportunidade.isAtivo disabled="disabled")
+									td
+										button(id='#{oportunidade.id}', type='button', name='btnEditar', onclick="requestFormEditar('#{oportunidade.id}')").btn.small.orange Editar
+							td(id=i)
+			.col-md-12.text-center
+				h3 Cadastrar nova oportunidade ?
+			.row
+				.col-xm-12.col-md-6
+						.row
+							.col-md-12.text-right
+								p.btn.green
+									a(href="cadastroOportunidade?compra") Compra
+				.col-xm-12.col-md-3.text-center
+						.row
+							.col-md-3
+								p.btn.green
+									a(href="cadastroOportunidade?venda") Venda 
+								
+block page-js
+	script.
+			function requestFormEditar(value) {
+				$("#id").val(value);
+				$("#frmOportunidade").submit();
+			};

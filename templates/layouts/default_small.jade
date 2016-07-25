@@ -1,0 +1,175 @@
+include ../mixins/flash-messages
+
+doctype html
+html
+	head
+		if env === 'production'
+			script.
+				var _sf_startpt=(new Date()).getTime()
+			
+		
+		meta(charset="utf-8")
+		meta(name="viewport", content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width")
+		meta(name="keywords" content="Sampa, sampa, digital, Digital, Sampa.Digital, desenvolvimento, empreendedor, empreendedorismo, oportunidades, compra, venda, notícias, eventos, agenda, Prefeitura de São Paulo, São Paulo, Vai Tec, Vai TEC, VAITEC, Bluemix, IBM, Startup, Simbio, Sebrae, Integrare, ADESAMPA, ade sampa, agencia, agência, agência são paulo de desenvolvimento")
+		meta(name="description" content="Sampa.digital é um portal da Adesampa com a Prefeitura de São Paulo para fomentar a inovação, o empreendedorismo e o desenvolvimento econômico e tecnológico na cidade")
+		
+		title= title || 'Sampa.Digital - Agência São Paulo de Desenvolvimento'
+		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700', rel='stylesheet')
+		link(href="/styles/themes/Flatly.min.css", rel="stylesheet")
+		
+		link(href="/bootstrap.css", rel="stylesheet")
+		link(href="/styles/adesampa/all.css", rel="stylesheet")
+		link(href="/styles/adesampa/nav.css", rel="stylesheet")
+		link(href="/styles/adesampa/carousel.css", rel="stylesheet")
+		link(href="/styles/adesampa/forms.css", rel="stylesheet")
+		link(href="/js/lib/perfectscrollbar/css/perfect-scrollbar.css", rel="stylesheet")
+		
+		//- scripts
+		script(src='/js/jquery/jquery-2.1.4.min.js')
+		script(src='/js/bootstrap/collapse.js')
+		script(src='/js/bootstrap/dropdown.js')
+		script(src='/js/bootstrap/carousel.js')
+		script(src='/js/bootstrap/transition.js')
+		script(src="/js/lib/perfectscrollbar/js/perfect-scrollbar.jquery.js")
+		script.
+			$(window).scroll(function() {
+		
+			if ($(this).scrollTop()>0)
+			{
+				$('.collapsible').fadeOut(100);
+			}
+			else
+			{
+			$('.collapsible').fadeIn(100);
+			}
+			});
+		
+
+		
+			
+		
+
+
+		
+		if user && user.canAccessKeystone
+			link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+		
+		block css
+		block head
+	body
+		nav.navbar.navbar-fixed-top
+			.top.hidden-xs
+				.container
+					.row
+						.col-md-10
+							ul
+								li: a(href='#') VaiTec
+								li: a(href='#') Apoio ao Empreendedor
+								li: a(href='#') Desenvolvimento Local
+								li: a(href='#') Microcrédito
+								li: a(href='#') Arranjos Produtivos
+						if user
+							.col-md-2
+								ul
+									li: a(href='/keystone') Admin UI
+									li.login: a(href='/keystone/signout') logout
+						else
+							.col-md-offset-1.col-md-1
+								ul
+									li.login: a(href='/keystone/signin') Login
+								
+			.container.main
+				.row.collapsible
+					.col-md-8.col-sm-6.col-xs-12
+						.navbar-header
+							//button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar-collapse', aria-expanded='false')
+								//span.sr-only Toggle navigation
+								//span.icon-bar
+								//span.icon-bar
+								//span.icon-bar
+							a.navbar-brand(href='/')
+								img.img-responsive(src="/images/templatemo_logo.png", alt="Sampa.Digital", width="350")
+					.col-md-4.col-sm-6.col-xs-12
+						.sponsor
+							img.img-responsive(src="/images/topsponsors.png", alt="IBM e Prefeitura de São Paulo")
+				.row
+					.col-md-5
+					.col-md-offset-2.col-md-5
+						.collapse.navbar-collapse#navbar-collapse
+							ul.nav.navbar-nav.navbar-left
+								each link in navLinks
+									li(class=(section === link.key ? 'active' : null)): a(href=link.href)= link.label
+							ul.nav.navbar-nav.navbar-right
+								if themes && themes.length
+									li.dropdown
+										a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+											| Themes 
+											span.caret
+										ul.dropdown-menu
+											each theme in themes
+												li(class=currentTheme === theme ? 'active' : '')
+													a(href='?theme=' + theme)= theme
+		//- intro
+		block intro
+		//- messages
+		+flash-messages(messages)
+		//- content
+		block content
+		//- footer
+		.separation-rule.footer-small
+			.container.text-center
+				.row
+					.col-md-3
+						ul.list-inline.margin-top-30
+						li
+							a(href="https://www.facebook.com/PrefSP")
+								span.social-icon-fb
+						li
+							a(href="https://twitter.com/prefsp")
+								span.social-icon-twitter
+						li
+							a(href="https://www.youtube.com/user/prefeiturasaopaulo")
+								span.social-icon-yt														
+					.col-md-6
+						p.text-center 
+							//img.img-responsive(src="/images/topsponsors_bottom.png", alt="ADESAMPA. Agencia São Paulo de Desenvolvimento. Em cooperação, Prefeitura de São Paulo. Desenvolvimento, trabalho e empreendedorismo")	
+						p Adesampa © Todos os Direitos Reservados, 2016
+					.col-md-3
+						//img.right-align.margin-top-10(src="/images/bluemix.png", alt="Desenvolvido com Bluemix")
+		//- footer
+		script.
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+		script.
+			$('body')[0].style.paddingTop = $('.navbar').height() + 30 + 'px';
+		
+		if user && user.canAccessKeystone
+			script(src='/keystone/js/content/editor.js')
+			
+		block page-js
+		
+		if env === 'production'
+			script.
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+				ga('create', '#{ga_property}', '#{ga_domain}');
+				ga('send', 'pageview');
+			script.
+				var _sf_async_config = { uid: #{chartbeat_property}, domain: '#{chartbeat_domain}', useCanonical: true };
+				(function() {
+					function loadChartbeat() {
+						window._sf_endpt = (new Date()).getTime();
+						var e = document.createElement('script');
+						e.setAttribute('language', 'javascript');
+						e.setAttribute('type', 'text/javascript');
+						e.setAttribute('src','//static.chartbeat.com/js/chartbeat.js');
+						document.body.appendChild(e);
+					};
+					var oldonload = window.onload;
+					window.onload = (typeof window.onload != 'function') ?
+					loadChartbeat : function() { oldonload(); loadChartbeat(); };
+				})();

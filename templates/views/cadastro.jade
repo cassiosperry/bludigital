@@ -1,0 +1,260 @@
+extends ../layouts/default
+
+block content
+	if empresaSubmitted && usuarioSubmitted && pessoaSubmitted
+		.container
+			.row
+				.col-md-12.text-center
+					h1.green Sua solicitação de cadastro foi concluida!
+					h3.green Aguarde,  em breve voce receberá um email com instruções de como proceder. 
+	else if cadastroCnpj
+		.container
+			.row
+				.col-md-12.text-center
+					h2.orange Nova Empresa por aqui?
+					p
+						i 
+							strong Comprador ou Vendedor:
+							|  Fique por dentro do que movimenta São Paulo
+			.row
+				.col-md-12.rule-bottom.text-center
+					h3 Cadastro Instituição
+			.row
+				.col-md-12
+					p#cadastro-instituicao-1-error.red
+						if empresaExistente
+							|  *CNPJ já está cadastrado em nosso sistema!
+							br
+						if tipoEmpresa == false
+							| *Por favor, seleciona um Tipo de Empresa.
+							br
+						if !cnpjCheck
+							| *Por favor, use um CNPJ válido.
+							br
+						
+			.row
+				.col-sm-8
+					form(method='post').form-horizontal#cadastro-instituicao-1
+						input(type='hidden', name='action', value='isCnpj').
+						.row
+							.col-xm-12.col-md-7
+								.col-xm-12.col-md-6
+									.form-group(class=validationErrors.empresaType ? 'has-error' : null required)
+										label.sr-only.col-sm-2.control-label.sr-only Tipo de Instituição 
+										select(name='empresaType').form-control
+											option(value='') Tipo de Instituição
+											each tipo in empresaTypes
+												option(value=tipo.value selected=formData.empresaType === tipo.value)= tipo.label
+								.col-xm-12.col-md-5.col-md-offset-1
+									.form-group
+										label.sr-only.col-sm-2.control-label.sr-only CNPJ
+										input(type='text' name='cnpj' placeholder='CNPJ').form-control
+						
+						.row
+							.col-md-12.text-center
+								button(type='button', onclick="validarCadastro();").btn.green.small Enviar
+								//button(type='submit').btn.green.small Enviar
+	else if cadastroInstituicao
+		.container
+			.row
+				.col-md-12.text-center
+					h2.orange Nova Empresa por aqui?
+					p
+						i
+							strong Comprador ou Vendedor:
+							|  Fique por dentro do que movimenta São Paulo
+							
+			.row
+				.col-md-12
+					p#cadastro-instituicao-2-error.red
+						//	
+							if !results.razaoSocial
+								|  *Por favor, entre com uma Razão Social.
+								br
+							if !results.email
+								| *Por favor, coloque um Email válido.
+								br
+							if !results.postcode
+								| *Por favor, coloque um CEP válido.
+								br
+							if !results.cpf
+								| *Por favor, coloque um CPF válido.
+								br
+							if !results.termosDeUso
+								| *Por favor, leia os Termos de Uso, e se aceitá-los, marque o campo.
+								br
+			.row
+				.col-md-12.rule-bottom.text-center
+					h3 Dados do Cadastro
+					|Atenção! campos com asterisco (*) são obrigatorios e devem ser preenchidos.
+					form(method='post', id='frmConta' , name='frmConta').form-horizontal
+						input(type='hidden', name='action', value='cadastroEmpresa')
+						input(type='hidden' name='cnpj' value = cnpj)
+						input(type='hidden' name='empresaType' value = empresaType)
+						input(type='hidden', name='latitude', id='latitude', value='')
+						input(type='hidden' name='longitude', id='longitude',value='')
+						input(type='hidden' name='key', id='key',value=googlekey)
+						.row.no-bottom-margin
+							.col-xm-12.col-md-7
+								.col-md-12
+									.form-group										
+										label.col-sm-4.text-left.padding-0 Nome Fantasia
+										input(type='text' name='nomeFantasia' placeholder='Nome Fantasia').form-control
+									.form-group
+										label.col-sm-4.text-left.padding-0 *Razão Social
+										input(type='text' name='razaoSocial' placeholder='Razão Social').form-control
+									.form-group
+										label.col-sm-4.text-left.padding-0 Breve Descrição
+										input(type='text' name='descricao' placeholder="Breve Descrição").form-control
+
+							.col-xm-12.col-md-5
+								.col-md-12
+									.form-group
+										label.col-sm-7.text-left.padding-0 Nome do Contato Comercial
+										input(type='text' name='contatoComercial' placeholder='Nome do Contato Comercial').form-control
+									.form-group
+										label.col-sm-4.text-left.padding-0 Telefone
+										input(type='text' name='telefone' placeholder='Telefone (Ex. (00)0000-0000) - Ramal').form-control
+									.form-group
+										label.col-sm-4.text-left.padding-0 *Email
+										input(type='email' name='email' placeholder='Email').form-control
+
+						.row
+							.col-md-12.rule-bottom.text-center
+								h3 Localização
+						.row
+							.col-xm-12.col-md-6
+								.col-md-12
+									.form-group
+										label.col-sm-4.text-left.padding-0 Endereço:
+										input(id ='endereco' type='text' name='endereco.street1' placeholder="Endereço").form-control
+							.col-xm-12.col-md-6
+								.form-group
+									.col-sm-3
+										label.col-sm-4.text-left.padding-0 Número:
+										input(id = 'numero' type='text' name='endereco.number' placeholder='Nº (Ex.999)' pattern="[0-9]*").form-control
+									.col-sm-6
+										label.col-sm-4.text-left.padding-0 CEP:
+										input(id = 'cep' type='text' name='endereco.postcode' placeholder='CEP (Ex. 00000-000)').form-control
+
+									.col-sm-3
+										label.col-sm-4.text-left.padding-0 Estado:
+										input(type='text' name='endereco.state' placeholder='Estado').form-control
+							.col-xm-12.col-md-6
+								.col-md-12
+									.form-group
+										label.col-sm-4.text-left.padding-0 Complemento:
+										input(type='text' name='endereco.name' placeholder="Complemento").form-control
+									.form-group
+										label.col-sm-4.text-left.padding-0 Bairro:
+										input(type='text' name='endereco.street2' placeholder='Bairro').form-control
+										
+							.col-xm-12.col-md-6
+								.col-md-12
+									.form-group
+										label.col-sm-4.text-left.padding-0 Cidade:
+										input(type='text' name='endereco.suburb' placeholder='Cidade').form-control
+									
+						.row
+							.col-xm-12.col-md-6
+								.col-md-12
+									.rule-bottom.text-center.margin-bottom-15
+										h3 Representante Legal
+									.form-group
+										label.col-sm-4.text-left.padding-0 Nome do Representante Legal:
+										input(type='text' name='nome' placeholder="Nome do Representante Legal").form-control
+
+									.form-group
+										label.col-sm-4.text-left.padding-0 CPF:
+										input(type='text' name='cpf' placeholder="CPF (Ex. 000.000.000-00)").form-control
+										
+							.col-xm-12.col-md-6
+								.col-md-12
+									.rule-bottom.text-center.margin-bottom-15
+										h3 Sua Empresa na Web
+									.form-group
+										label.col-sm-4.text-left.padding-0 WebSite
+										input(type='text' name='webSite' placeholder='Web Site').form-control
+									.form-group
+										label.col-sm-4.text-left.padding-0 Facebook
+										input(type='text' name='facebook' placeholder='Facebook').form-control
+									.form-group
+										label.col-sm-4.text-left.padding-0 Twitter
+										input(type='text' name='twitter' placeholder='Twitter').form-control
+						
+						.row
+								.col-sm-12.col-md-3
+									input(type='checkbox', name='termos', id='termos', checked=false, class='form-checkbox')
+									label(for='termos', class='form-checkbox')&nbsp;Li e concordo com os 
+										a(href='termos', onclick="window.open(this.href,'Termos de Uso','directories=0,location=0,menubar=no,resizable=no,scrollbars=yes,status=no,toolbar=no,width=900,height=900'); return false;") Termos de Uso
+
+								.col-sm-12.col-md-3
+									input(type='checkbox', name='autorizacao', id='autorizacao', checked=true, class='form-checkbox')
+									label(for='autorizacao', class='form-checkbox')&nbsp;Quero receber emails do Sampa-Digital
+						.row
+							.col-md-12.text-center
+								button(type='button', onclick="validaDadosCadastrais();").btn.green.small Enviar
+								//button(type='submit').btn.green.small Enviar
+		
+	else if emailBlock
+		.container
+			.row
+				.col-md-12.text-center
+					h1.green Email ja cadastrado
+					h3.green favor tentar cadastrar outro email
+
+block page-js
+	//validation
+	script(src='/js/adesampa/validarCadastro.js')
+	
+	script.
+		function longlatcad() {
+			var rua = $("#endereco").val();
+			var num = $("#numero").val();
+			var cep = $("#cep").val();
+			var key = $("#key").val();
+			var url  = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + rua+' '+num+' '+ cep +'&key=' + key;
+			$.getJSON(url, function(data) {
+				if (data.status == 'OK'){
+					$("#latitude").val(data.results[0].geometry.location.lat);
+					$("#longitude").val(data.results[0].geometry.location.lng);
+				} else{
+					$("#latitude").val('');
+					$("#longitude").val('');
+				}
+				//$("#frmConta").submit();
+			});
+		}
+
+		$('body').on('change', '.form-checkbox', function(){
+			if ($('#termos').prop('checked')){
+				$('#sendButton').removeClass('disabled');
+				$('#sendButton').prop("disabled",false);
+			}
+			else {
+				$('#sendButton').addClass('disabled');
+				$('#sendButton').prop("disabled",true);
+			};
+		});
+		
+		$(document).ready(function() {
+		    $("#numero").keydown(function (e) {
+		        // Allow: backspace, delete, tab, escape, enter and .
+		        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+		             // Allow: Ctrl+A
+		            (e.keyCode == 65 && e.ctrlKey === true) ||
+		             // Allow: Ctrl+C
+		            (e.keyCode == 67 && e.ctrlKey === true) ||
+		             // Allow: Ctrl+X
+		            (e.keyCode == 88 && e.ctrlKey === true) ||
+		             // Allow: home, end, left, right
+		            (e.keyCode >= 35 && e.keyCode <= 39)) {
+		                 // let it happen, don't do anything
+		                 return;
+		        }
+		        // Ensure that it is a number and stop the keypress
+		        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+		            e.preventDefault();
+		        }
+		    });
+		});

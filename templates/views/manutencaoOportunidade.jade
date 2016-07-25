@@ -1,0 +1,60 @@
+extends ../layouts/default
+
+block content
+	.container
+		.row
+			.col-md-12.text-center
+				h2.orange O que deseja editar?
+				p
+
+						|  Ao terminar suas alterações clique em salvar.<br />
+						|  Campos com asterisco (*) sao obrigatorios e devem ser preenchidos
+		.row
+			.col-md-12.rule-bottom.text-center
+				h3 Dados da oportunidade
+				form(method='post').form-horizontal
+					input(type='hidden', name='action', value='update')
+					input(type='hidden' name='id' value = oportunidade.id)
+					.row.no-bottom-margin
+						.col-xm-12.col-md-7
+							.col-md-12
+								.form-group
+									label.col-sm-4.text-left *Titulo
+									input(type='text' name='nome' placeholder='Titulo' value = oportunidade.nome).form-control
+								.form-group
+									label.col-sm-4.text-left *Breve Descrição
+									input(type='text' name='breveDescricao' required x-moz-errormessage="Por favor preencha esse campo." placeholder='Breve Descrição' value = oportunidade.breveDescricao).form-control
+								.form-group
+									label.col-sm-4.text-left *Descrição Detalhada
+									textarea(type='text' required x-moz-errormessage="Por favor preencha esse campo." name='descricaoDetalhada' rows=4 placeholder="Descrição Detalhada").form-control #{oportunidade.descricaoDetalhada}
+								if (oportunidade.tipoOportunidade =='COMPRA')
+									.form-group
+										label.col-sm-4.text-left Quantidade
+										input(type='text' name='quantidade' placeholder='Quantidade' value = oportunidade.quantidade).form-control
+								else if (oportunidade.tipoOportunidade =='VENDA')
+									.form-group
+										label.col-sm-4.text-left Preço
+										input(type='text' name='preco' placeholder='Preço' value = oportunidade.preco).form-control
+								.form-group(class=validationErrors.tipoOferta ? 'has-error' : null required)
+									label.col-sm-4.text-left *Tipo de Oferta 
+									select(name='tipoOferta' required x-moz-errormessage="Por favor selecione um tipo de Oferta.").form-control
+										each tipo in tipoOfertas
+											if (tipo.value == oportunidade.tipoOferta)
+												option(value=tipo.value selected=formData.tipoOferta === tipo.value)= tipo.label
+										each tipo in tipoOfertas
+											if (tipo.value != oportunidade.tipoOferta)
+												option(value=tipo.value selected=formData.tipoOferta === tipo.value)= tipo.label
+								.form-group
+									label.col-sm-4.text-left Link da Ofeta
+									input(type='text' name='linkProposta' placeholder='Link da Ofeta' value = oportunidade.linkProposta).form-control
+								.form-group
+									label.col-sm-4.text-left Url da imagem da oportunidade
+									input(type='text' name='imagem' placeholder='Url da imagem da oportunidade' value = oportunidade.imagem).form-control
+					.row
+						.col-md-12.text-left
+								input(type='checkbox' name='isAtivo' checked = oportunidade.isAtivo class='form-checkbox') 
+								label ATIVAR?
+					.row
+						.col-md-12.text-center
+							.form-group
+								button(type='submit').btn.green Salvar

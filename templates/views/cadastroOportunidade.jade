@@ -1,0 +1,65 @@
+extends ../layouts/default
+
+block content
+	if oportunidadeSubmitted
+		.container
+			.row
+				.col-md-12.text-center
+					h1.green Cadastro de Oportunidade Concluido!
+	else if compra || venda
+		.container
+			.row
+				.col-md-12.text-center
+				
+					if compra
+						h2.orange Cadastro de Oportunidade de Compra
+						p Atenção! campos com asterisco (*) são obrigatorios e devem ser preenchidos.
+					else if venda
+						h2.orange Cadastro de Oportunidade de Venda
+						p Atenção! campos com asterisco (*) são obrigatorios e devem ser preenchidos.
+				
+			.row
+				.col-md-12.rule-bottom.text-center
+					
+					form(method='post').form-horizontal
+						input(type='hidden', name='action', value='cadastroOportunidade')
+						if compra
+							input(type='hidden' name='tipoOportunidade' value = 'COMPRA')
+						else if venda
+							input(type='hidden' name='tipoOportunidade' value = 'VENDA')
+						.row.no-bottom-margin
+							.col-xm-12.col-md-7
+								.col-md-12
+									.form-group										
+										label.col-sm-4.text-left *Título da Oportunidade
+										input(type='text' name='nome' placeholder='Título da Oportunidade').form-control
+									.form-group
+										label.col-sm-4.text-left *Breve Descrição
+										input(type='text' name='breveDescricao' required x-moz-errormessage="Por favor preencha esse campo." placeholder='Breve Descrição').form-control
+									.form-group
+										label.col-sm-4.text-left *Descrição detalhada
+										textarea(type='text' name='descricaoDetalhada' rows=4 required x-moz-errormessage="Por favor preencha esse campo." placeholder="Descrição Detalhada").form-control
+									if compra
+										.form-group
+											label.col-sm-4.text-left Quantidade
+											input(type='text' name='quantidade' placeholder='Quantidade').form-control
+									else if venda
+										.form-group
+											label.col-sm-4.text-left Preço
+											input(type='text' name='preco' placeholder='Preço').form-control
+									.form-group(class=validationErrors.tipoOferta ? 'has-error' : null required)
+										label.col-sm-4.text-left *Tipo de Oferta 
+										select(name='tipoOferta' required x-moz-errormessage="Por favor selecione um tipo de Oferta.").form-control
+											option(value='') Tipo de Oferta
+											each tipo in tipoOfertas
+												option(value=tipo.value selected=formData.tipoOferta === tipo.value)= tipo.label
+									.form-group
+										label.col-sm-4.text-left Link da Oferta
+										input(type='text' name='linkProposta' placeholder='Link da Ofeta').form-control
+									.form-group
+										label.col-sm-4.text-left Url da imagem da oportunidade
+										input(type='text' name='imagem' placeholder='Url da imagem da oportunidade').form-control
+						.row
+							.col-md-12.text-center
+								.form-group
+									button(type='submit').btn.green Enviar

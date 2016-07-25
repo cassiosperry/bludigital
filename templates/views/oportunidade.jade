@@ -1,0 +1,266 @@
+extends ../layouts/default
+
+block intro
+	if locals.oportunidades
+		.container
+			.row
+				.col-md-12.text-center
+					if oportunidades.length
+						if oportunidades[0].tipoOportunidade == 'VENDA'
+
+							h2.orange Quero Vender!!
+						else
+							h2.orange Quero Comprar!! 
+					else
+						h2.orange Nada cadastrado no momento!!
+
+	else if locals.umaOportunidade
+		.container
+			.row
+				.col-md-12.text-center
+						if umaOportunidade.length
+
+						else
+							h2.orange Oportunidade não encontrada!!
+
+
+block content
+	if locals.oportunidades
+		.bg-pb
+			.container
+				//
+					p Ordenar por: 
+						a(href='#') Mais recentes
+						|&nbsp;/&nbsp;
+						a(href='#') Mais antigas
+						| &nbsp;/&nbsp;
+						a(href='#') A-Z
+						|&nbsp; /&nbsp;
+						a(href='#') Z-A
+				if oportunidades.length
+					each oportunidade in oportunidades
+						.row
+							.col-md-2.col-sm-2.col-xs-2.text-center
+								if oportunidade.image
+									img.img-responsive.fit(oportunidade.image.fit(160,160))
+								else
+									img.img-responsive(src='/images/icon_500x500.svg')
+							.col-md-10.col-sm-10.col-xs-10
+								h3.no-margin: = oportunidade.nome
+								p 
+									if oportunidade.empresa
+										span.orange
+											| #{oportunidade.empresa.nomeFantasia}
+									else
+										span.orange
+											| Empresa
+									| &nbsp;| Publicado em:
+									if oportunidade.createdAt
+											span.orange 
+												| #{oportunidade._.createdAt.format('DD')}/#{oportunidade._.createdAt.format('MM')}/#{oportunidade._.createdAt.format('YYYY')}
+									else
+											span.orange 
+												| sem data
+								if oportunidade.breveDescricao
+									p!= oportunidade.breveDescricao
+								else
+									p Sem descrição!
+								p.btn.small.orange: a(href='oportunidades?=' + oportunidade.id) Leia mais
+				else
+					.row
+						.col-md-12
+							h3 Nenhuma oportunidade!
+	else if locals.umaOportunidade
+		.bg-pb
+			.container
+				.row
+					.col-md-2.col-sm-2.col-xs-2.text-center
+						if umaOportunidade.image
+							img.img-responsive(oportunidade.image.fit(160,160))
+						else
+							img.img-responsive(src='/images/icon_500x500.svg', width='80', height='80')
+					.col-md-7.col-sm-10.col-xs-10
+						.col-md-12
+							h3.no-margin
+								|Título: 
+								span.orange 
+									| #{umaOportunidade[0].nome}
+							p
+								
+								if umaOportunidade[0].tipoOferta
+									| &nbsp;| Tipo de oferta:
+									span.orange 
+										| #{umaOportunidade[0].tipoOferta}
+								else
+								
+							if umaOportunidade[0].linkProposta
+								p
+									span <strong>
+										| Link para proposta: </strong>
+										a(href=umaOportunidade[0].linkProposta)= umaOportunidade[0].linkProposta
+								
+							if umaOportunidade[0].quantidade
+								p
+									span <strong>
+										|Quantidade: </strong>#{umaOportunidade[0].quantidade}
+							
+							if umaOportunidade[0].preco
+								p
+									span <strong>
+										|Preço: </strong>R$:#{umaOportunidade[0].preco}
+								
+							if umaOportunidade[0].descricaoDetalhada
+								span <strong>Detalhes desta oportunidade:</strong>
+								<br/>
+								p(style="word-wrap: break-word;")
+									|#{umaOportunidade[0].descricaoDetalhada}
+					
+					.col-md-3.col-sm-12.col-xs-12
+						.col-md-12
+							h3.rule-bottom.text-center Informações do Anunciante
+							
+							if umaOportunidade[0].empresa.nomeFantasia
+								p 
+									<strong>Empresa: </strong> #{umaOportunidade[0].empresa.nomeFantasia}
+							
+							if umaOportunidade[0].tipoOportunidade == 'VENDA'
+								if umaOportunidade[0].empresa.contatoComercial
+									p 
+										<strong>Contato Comercial: </strong> #{umaOportunidade[0].empresa.contatoComercial}
+										
+								if umaOportunidade[0].empresa.telefone
+									p 
+										<strong>Telefone: </strong> #{umaOportunidade[0].empresa.telefone}
+							
+							if umaOportunidade[0].empresa.webSite
+								p 
+									<strong>Site da Empresa: </strong> #{umaOportunidade[0].empresa.webSite}
+							
+							if umaOportunidade[0].empresa.twitter
+								p 
+									<strong>Twitter: </strong> #{umaOportunidade[0].empresa.twitter}
+							
+							p
+								a(href="/empresa?#{umaOportunidade[0].empresa.controlData}") Veja o perfil do Anunciante
+
+	else
+		.bg-pb
+			.container
+				.row
+					.col-md-12
+						h3 Nenhuma oportunidade!
+//
+	block intro
+		.container
+			.row				
+				//h1=oportunidades[0]			
+				.col-md-12.text-center
+					
+						if oportunidades.length
+							if oportunidades[0].tipoOportunidade == 'VENDA'
+								h2.orange Quero Vender!!
+								p
+									i Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+							else
+								h2.orange Quero Comprar!! 
+								p
+									i Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+						else
+							h2.orange Nada cadastrado no momento!!
+							p
+								i Maqui porra quista conteceno qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+					
+						if oportunidades[0].tipoOportunidade == 'VENDA'
+							h2.orange Quero Vender!!
+							p
+								i Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+						else
+							h2.orange Quero Comprar!! 
+							p
+								i Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+					
+						h2.orange Oportunidade não encontrada!!
+						//
+							_id
+							updatedBy
+							updatedAt
+							createdBy
+							createdAt
+							nome
+							descricao
+							quantidade
+							tipoOportunidade
+//
+	if 'oportunidades' in this
+		block content
+			.bg-pb
+				.container
+					p Ordenar por: 
+						a(href='#') Mais recentes
+						|&nbsp;/&nbsp;
+						a(href='#') Mais antigas
+						| &nbsp;/&nbsp;
+						a(href='#') A-Z
+						|&nbsp; /&nbsp;
+						a(href='#') Z-A
+					if oportunidades.length
+						each oportunidade in oportunidades
+							.row
+								.col-md-2.text-center
+									if oportunidade.image
+										img.fit(oportunidade.image.fit(160,160))
+									else
+										img.fit(src='/favicon.ico')
+								.col-md-10
+									h3.no-margin: = oportunidade.nome
+									p 
+										if oportunidade.empresa
+											span.orange
+												| #{oportunidade.empresa.nomeFantasia}
+										else
+											span.orange
+												| Empresa da bananinha
+										| &nbsp;| Publicado em:
+										if oportunidade.createdAt
+												span.orange 
+													| #{oportunidade._.createdAt.format('DD')} de #{oportunidade._.createdAt.format('MMMM')} de #{oportunidade._.createdAt.format('YYYY')}
+										else
+												span.orange 
+													| Bananas
+									if oportunidade.breveDescricao
+										p!= oportunidade.breveDescricao
+									else
+										p Bananosas bananudas!
+									p.btn.small.orange: a(href='oportunidades?=' + oportunidade.id) Leia mais
+					else
+						.row
+							.col-md-12
+								h3 Nenhuma oportunidade!
+
+	else if 'umaOportunidade' in this
+		block content
+			.bg-pb
+				.container
+					.row
+						.col-md-2.text-center
+							if umaOportunidade.image
+								img.fit(umaOportunidade.image.fit(160,160))
+							else
+								img.fit(src='/favicon.ico')
+						.col-md-10
+
+							h3.no-margin: = oportunidade.Nome
+
+							p 
+								if umaOportunidade.empresa
+									span.orange
+										| {umaOportunidade.empresa.nomeFantasia}
+								else
+									span.orange
+										| Nome da Empresa
+								| &nbsp;| Publicado em:
+								if umaOportunidade.createdAt
+										span.orange 
+											| #{umaOportunidade._.createdAt.format('DD')} de #{umaOportunidade._.createdAt.format('MMMM')} de #{umaOportunidade._.createdAt.format('YYYY')}
+								else
+										span.orange 

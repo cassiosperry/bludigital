@@ -1,0 +1,351 @@
+body {
+    background-color: #ffffff;
+    font-family: "Gotham_Book",Arial,Helvetice Neue,sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+}
+/* FONTS */
+h1, h2, h3, h4, h5, h6, span, p {
+    font-family: "Gotham_Book",Arial,Helvetice Neue,sans-serif;
+}
+ul {
+    list-style: none;
+}
+h2{
+  font-size: 42px;
+  font-weight: normal;
+}
+h2.orange, h3.orange, h4.orange, h5.orange, p.orange, a.orange, li.orange, span.orange{
+  color: #e67e22;
+}
+h2.gray, h3.gray, h4.gray, h5.gray, p.gray, a.gray, li.gray, span.gray{
+  color: #929292;
+}
+h3{
+    font-size: 16px;
+    font-weight: bold;
+}
+.red{
+  color: red;
+}
+a {
+  color: #428bca;
+}
+a:hover {
+  color: #428bca;
+}
+.upp{
+    text-transform: uppercase;
+}
+.btn{
+    border-bottom: 2px solid;
+    border-radius: 0;
+    color: #FFFFFF;
+}
+.btn a{
+    color: #ffffff;
+    text-decoration: none !important;
+}
+.btn.green{
+    background-color: #66b980;
+    border-bottom-color: #27ae60;
+}
+.btn.green:hover{
+    background-color: #27ae60;
+}
+.btn.orange{
+    background-color: #f29600;
+    border-bottom-color: #d35400;
+}
+.btn.orange:hover{
+    background-color: #d35400;
+}
+.btn.purple{
+    background-color: #990066;
+    border-bottom-color: #830659;
+}
+.btn.purple:hover{
+    background-color: #830659;
+}
+.small{
+  font-size: 14px;
+}
+img.fit {
+    width: 100%;
+    height: auto;
+}
+.img-responsive{
+  margin-left: 2%;
+}
+.row{
+  margin-bottom: 2%;
+}
+.no-top-margin{
+  margin-top: 0;
+  padding-top: 0;
+}
+.no-margin{
+  margin: 0;
+  padding: 0;
+}
+.no-bottom-margin{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.margin-top-10{
+  margin-top: 10px;
+}
+.margin-top-20{
+  margin-top: 20px;
+}
+.margin-top-30{
+  margin-top: 30px;
+}
+.right-align{
+  float: right;
+}
+.btn.small{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.separation-rule{
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #cccccc;
+}
+.separation-rule hr{
+  display: none;
+}
+.social-icon-fb {
+  background: rgba(0, 0, 0, 0) url("/images/social-icon-fb.png") no-repeat scroll 0 0;
+  display: block;
+  height: 42px;
+  width: 42px;
+}
+.social-icon-fb:hover {
+  background: rgba(0, 0, 0, 0) url("/images/social-icon-fb-over.png") no-repeat scroll 0 0;
+}
+.social-icon-twitter {
+    background: rgba(0, 0, 0, 0) url("/images/social-icon-twitter.png") no-repeat scroll 0 0;
+    display: block;
+    height: 42px;
+    width: 42px;
+}
+.social-icon-twitter:hover {
+    background: rgba(0, 0, 0, 0) url("/images/social-icon-twitter-over.png") no-repeat scroll 0 0;
+}
+.social-icon-yt {
+    background: rgba(0, 0, 0, 0) url("/images/social-icon-yt.png") no-repeat scroll 0 0;
+    display: block;
+    height: 42px;
+    width: 42px;
+}
+.social-icon-yt:hover {
+    background: rgba(0, 0, 0, 0) url("/images/social-icon-yt-over.png") no-repeat scroll 0 0;
+}
+.rule-bottom{
+  border-bottom: 2px solid #CCCCCC;
+}
+/* BREADCRUMBS */
+.breadcrumbs{
+  list-style-type: none;
+  margin-bottom: 20px;
+  padding-left: 0;
+}
+.breadcrumbs li{
+  display: inline-block;
+}
+.breadcrumbs li:after{
+  content: " > ";
+  font-family: "Gotham_Book",Arial,Helvetice Neue,sans-serif;
+  color: #929292;
+}
+.breadcrumbs li:last-child:after{
+  content: "";
+}
+
+/* SECTIONS */
+.oportunidades{
+  background-image: url('/images/templatemo_content_light_bg.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/* MAP */
+.mapa{
+  background-color: #FCFCFC;
+}
+.filters{
+  font-size: 16px;
+}
+.filters .selected{
+  color: #e67e22;
+}
+.filters a{
+  color: #333333;
+}
+.filters a:hover{
+  color: #e67e22;
+  text-decoration: none;
+}
+
+/* AGENDA */
+.agenda{
+  background-image: url('/images/templatemo_content_light_bg.png');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+/* TECNOLOGIA */
+.tecnologia{
+  background-color: #FCFCFC;
+}
+/* FOOTER */
+.footer{
+  background-image: url('/images/templatemo_footer_bg.jpg');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  padding-top: 2%;
+  position: relative;
+}
+.footer-small{
+  background-image: url('/images/templatemo_footer_bg.jpg');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  padding-top: 2%;
+  position: relative;
+}
+.bluemix{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.bg-pb{
+  /*background-image: url("/images/templatemo_content_light_bg.png");
+  background-size: cover;
+  */
+  
+  background-image: url("/images/templatemo_content_light_bg.png");
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+/* TERMOS DE USO */
+.scroll-container{
+  width: 100%;
+  height: 500px;
+  position: relative;
+  border: 1px solid #EFEFEF;
+  padding: 15px;
+}
+/* INDEX */
+
+#leadspace{
+  background-image: url(../../images/sd_background_grande_1.jpg);
+  background-size: cover;
+  height: 400px;
+  /*Font*/
+  color: #FFFFFF;
+  /*Put it away from the nav*/
+  margin-top: 0;
+  /*centraliaze all content*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*remove bottom margin from bootstrap row class*/
+  margin-bottom: 0 !important;
+}
+#leadspace p{
+  font-size: 21px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+#leadspace h2{
+  font-size: 36px;
+}
+
+
+
+/* Extra classes */
+
+.padding-0 { padding: 0px !important; }
+.padding-5 { padding: 5px !important; }
+.padding-10 { padding: 10px !important; }
+.padding-15 { padding: 15px !important; }
+.padding-20 { padding: 20px !important; }
+.padding-25 { padding: 25px !important; }
+.padding-30 { padding: 30px !important; }
+
+.padding-left-0 { padding-left: 0px !important; }
+.padding-left-5 { padding-left: 5px !important; }
+.padding-left-10 { padding-left: 10px !important; }
+.padding-left-15 { padding-left: 15px !important; }
+.padding-left-20 { padding-left: 20px !important; }
+.padding-left-25 { padding-left: 25px !important; }
+.padding-left-30 { padding-left: 30px !important; }
+
+.padding-right-0 { padding-right: 0px !important; }
+.padding-right-5 { padding-right: 5px !important; }
+.padding-right-10 { padding-right: 10px !important; }
+.padding-right-15 { padding-right: 15px !important; }
+.padding-right-20 { padding-right: 20px !important; }
+.padding-right-25 { padding-right: 25px !important; }
+.padding-right-30 { padding-right: 30px !important; }
+
+.padding-top-0 { padding-top: 0px !important; }
+.padding-top-5 { padding-top: 5px !important; }
+.padding-top-10 { padding-top: 10px !important; }
+.padding-top-15 { padding-top: 15px !important; }
+.padding-top-20 { padding-top: 20px !important; }
+.padding-top-25 { padding-top: 25px !important; }
+.padding-top-30 { padding-top: 30px !important; }
+
+.padding-bottom-0 { padding-bottom: 0px !important; }
+.padding-bottom-5 { padding-bottom: 5px !important; }
+.padding-bottom-10 { padding-bottom: 10px !important; }
+.padding-bottom-15 { padding-bottom: 15px !important; }
+.padding-bottom-20 { padding-bottom: 20px !important; }
+.padding-bottom-25 { padding-bottom: 25px !important; }
+.padding-bottom-30 { padding-bottom: 30px !important; }
+
+.margin-0 { margin: 0px !important; }
+.margin-5 { margin: 5px !important; }
+.margin-10 { margin: 10px !important; }
+.margin-15 { margin: 15px !important; }
+.margin-20 { margin: 20px !important; }
+.margin-25 { margin: 25px !important; }
+.margin-30 { margin: 30px !important; }
+
+.margin-left-0 { margin-left: 0px !important; }
+.margin-left-5 { margin-left: 5px !important; }
+.margin-left-10 { margin-left: 10px !important; }
+.margin-left-15 { margin-left: 15px !important; }
+.margin-left-20 { margin-left: 20px !important; }
+.margin-left-25 { margin-left: 25px !important; }
+.margin-left-30 { margin-left: 30px !important; }
+
+.margin-right-0 { margin-right: 0px !important; }
+.margin-right-5 { margin-right: 5px !important; }
+.margin-right-10 { margin-right: 10px !important; }
+.margin-right-15 { margin-right: 15px !important; }
+.margin-right-20 { margin-right: 20px !important; }
+.margin-right-25 { margin-right: 25px !important; }
+.margin-right-30 { margin-right: 30px !important; }
+
+.margin-top-0 { margin-top: 0px !important; }
+.margin-top-5 { margin-top: 5px !important; }
+.margin-top-10 { margin-top: 10px !important; }
+.margin-top-15 { margin-top: 15px !important; }
+.margin-top-20 { margin-top: 20px !important; }
+.margin-top-25 { margin-top: 25px !important; }
+.margin-top-30 { margin-top: 30px !important; }
+
+.margin-bottom-0 { margin-bottom: 0px !important; }
+.margin-bottom-5 { margin-bottom: 5px !important; }
+.margin-bottom-10 { margin-bottom: 10px !important; }
+.margin-bottom-15 { margin-bottom: 15px !important; }
+.margin-bottom-20 { margin-bottom: 20px !important; }
+.margin-bottom-25 { margin-bottom: 25px !important; }
+.margin-bottom-30 { margin-bottom: 30px !important; }
