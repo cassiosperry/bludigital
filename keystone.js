@@ -10,14 +10,8 @@ var mongoUri;
 if (process.env.VCAP_SERVICES) {
     var cloudant = JSON.parse(process.env.VCAP_SERVICES);
     cloudant = cloudant.cloudantNoSQLDB[0].credentials || {};
-    
-    console.log(cloudant);
-
-     mongoUri = 'https://' + cloudant.username + ':' +
-                             cloudant.password + '@' + 
-                             cloudant.hostname + ':' + 
-                             cloudant.port + '/' 
-                             + process.env.LOCAL_DATABASE_NAME;
+    mongoUri = cloudant.url;
+    console.log('Using cloudant database: ' + mongoUri);
 } else {
 	mongoUri = 'mongodb://' + process.env.LOCAL_DATABASE_USER + ':' + 
                               process.env.LOCAL_DATABASE_PASSWORD +'@' + 
@@ -25,7 +19,7 @@ if (process.env.VCAP_SERVICES) {
                               process.env.LOCAL_DATABASE_PORT + '/' + 
                               process.env.LOCAL_DATABASE_NAME;
 
-    console.log(mongoUri);
+    console.log('Using local database: ' + mongoUri);
 }
 
 // Initialise Keystone with your project's configuration.
