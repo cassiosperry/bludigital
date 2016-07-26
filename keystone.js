@@ -8,11 +8,11 @@ var keystone = require('keystone');
 var mongoUri;
 if (process.env.VCAP_SERVICES) {
    mongoUri = process.env.BLUEMIX_MONGODB_URL;
-   console.log('Using cloudant database: ' + mongoUri);
 } else {
-	mongoUri = 
-    console.log('Using local database: ' + mongoUri);
+	mongoUri = process.env.LOCAL_MONGODB_URL;
 }
+
+console.log('Using database: ' + mongoUri);
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
