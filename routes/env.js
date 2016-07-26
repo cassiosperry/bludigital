@@ -12,11 +12,11 @@ module.exports = (function() {
     cloudant = cloudant.cloudantNoSQLDB[0].credentials || {};
   }
   
-  env.db.hostname = cloudant.host ||  process.env.LOCAL_DATABASE_HOST;
-  env.db.port = cloudant.port || process.env.LOCAL_DATABASE_PORT;
-  env.db.username = cloudant.username || process.env.LOCAL_DATABASE_USER;
-  env.db.password = cloudant.password || process.env.LOCAL_DATABASE_PASSWORD;
-  env.db.database = process.env.LOCAL_DATABASE_NAME;
+  env.db.hostname = cloudant.host ||  'localhost';
+  env.db.port = cloudant.port || 5984;
+  env.db.username = cloudant.username || 'admin';
+  env.db.password = cloudant.password || 'admin';
+  env.db.database = 'bludigital';
 
   env.getDbUrl = function() {
     var protocolo = env.db.port == 443 ? 'https://' : 'http://';
