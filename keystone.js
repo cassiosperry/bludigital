@@ -5,15 +5,14 @@ require('dotenv').load();
 var keystone = require('keystone');
 
 //database
-/*
+
 var mongoUri;
 
 
 if (process.env.VCAP_SERVICES) {
-    var cloudant = JSON.parse(process.env.VCAP_SERVICES);
-    cloudant = cloudant.cloudantNoSQLDB[0].credentials || {};
-    mongoUri = cloudant.url;
-    console.log('Using cloudant database: ' + mongoUri);
+   mongoUri = process.env.BLUEMIX_MONGODB_URL;
+
+   console.log('Using cloudant database: ' + mongoUri);
 } else {
 	mongoUri = 'mongodb://' + process.env.LOCAL_DATABASE_USER + ':' + 
                               process.env.LOCAL_DATABASE_PASSWORD +'@' + 
