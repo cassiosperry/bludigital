@@ -10,7 +10,7 @@
         },
         "Name": "adeSampa",
         "Target": {
-            "Org": "research@senior.com.br",
+            "Org": "bludigital",
             "Space": "dev",
             "Url": "https://api.ng.bluemix.net"
         },

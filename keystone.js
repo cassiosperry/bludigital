@@ -5,7 +5,9 @@ require('dotenv').load();
 var keystone = require('keystone');
 
 //database
+/*
 var mongoUri;
+
 
 if (process.env.VCAP_SERVICES) {
     var cloudant = JSON.parse(process.env.VCAP_SERVICES);
@@ -21,6 +23,7 @@ if (process.env.VCAP_SERVICES) {
 
     console.log('Using local database: ' + mongoUri);
 }
+*/
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
@@ -34,7 +37,7 @@ keystone.init({
     'favicon': 'public/favicon.ico',
     'views': 'templates/views',
     'view engine': 'jade',
-    'mongo': mongoUri,
+    //'mongo': mongoUri,
     'emails': 'templates/emails',
     'auto update': true,
     'session': true,
