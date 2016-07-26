@@ -5,24 +5,14 @@ require('dotenv').load();
 var keystone = require('keystone');
 
 //database
-
 var mongoUri;
-
-
 if (process.env.VCAP_SERVICES) {
    mongoUri = process.env.BLUEMIX_MONGODB_URL;
-
    console.log('Using cloudant database: ' + mongoUri);
 } else {
-	mongoUri = 'mongodb://' + process.env.LOCAL_DATABASE_USER + ':' + 
-                              process.env.LOCAL_DATABASE_PASSWORD +'@' + 
-                              process.env.LOCAL_DATABASE_HOST + ':' + 
-                              process.env.LOCAL_DATABASE_PORT + '/' + 
-                              process.env.LOCAL_DATABASE_NAME;
-
+	mongoUri = 
     console.log('Using local database: ' + mongoUri);
 }
-*/
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
