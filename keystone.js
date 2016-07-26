@@ -26,7 +26,7 @@ keystone.init({
     'favicon': 'public/favicon.ico',
     'views': 'templates/views',
     'view engine': 'jade',
-    //'mongo': mongoUri,
+    'mongo': mongoUri,
     'emails': 'templates/emails',
     'auto update': true,
     'session': true,
