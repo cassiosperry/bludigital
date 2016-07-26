@@ -8,9 +8,9 @@
             },
             "Packager": "com.ibm.perfectstorm.cloudoe.packager.LiveEditDeploymentPackager"
         },
-        "Name": "adeSampa",
+        "Name": "bludigital",
         "Target": {
-            "Org": "bludigital",
+            "Org": "research_org",
             "Space": "dev",
             "Url": "https://api.ng.bluemix.net"
         },
