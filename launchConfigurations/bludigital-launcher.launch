@@ -1,0 +1,18 @@
+{
+  "ServiceId": "com.ibm.cloudoe.orion.client.deploy",
+  "Params": {
+    "Target": {
+      "Url": "https://api.ng.bluemix.net",
+      "Org": "research_org",
+      "Space": "bludigital"
+    },
+    "Name": "bludigital",
+    "Instrumentation": {
+      "services": [
+        "bludigital-cloudant"
+      ]
+    }
+  },
+  "Path": "manifest.yml",
+  "Type": "Cloud Foundry"
+}
