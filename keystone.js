@@ -6,6 +6,9 @@ var keystone = require('keystone');
 
 //database
 var mongoUri;
+
+console.log(process.env.VCAP_SERVICES);
+
 if (process.env.VCAP_SERVICES) {
    mongoUri = process.env.BLUEMIX_MONGODB_URL;
 } else {
@@ -13,7 +16,6 @@ if (process.env.VCAP_SERVICES) {
 }
 
 console.log('Using database: ' + mongoUri);
-
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
@@ -45,14 +47,9 @@ keystone.init({
 
 keystone.import('models');
 
-// keystone.set('mongo', mongoURI);
-// keystone.set('host', appEnv.bind);
-// keystone.set('port',appEnv.port);
-
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set uniquely
 // for each request) should be added to ./routes/middleware.js
-
 keystone.set('locals', {
     _: require('underscore'),
     env: keystone.get('env'),
@@ -72,7 +69,6 @@ keystone.set('routes', require('./routes'));
 
 // Setup common locals for your emails. The following are required by Keystone's
 // default email templates, you may remove them if you're using your own.
-
 keystone.set('email locals', {
     logo_src: '/images/logo-email.gif',
     logo_width: 194,
@@ -93,7 +89,6 @@ keystone.set('email locals', {
 
 // Be sure to update this rule to include your site's actual domain, and add
 // other rules your email templates require.
-
 keystone.set('email rules', [{
         find: '/images/',
         replace: (keystone.get('env') == 'production') ? 'http://www.your-server.com/images/' : 'http://localhost:3000/images/'
@@ -107,7 +102,6 @@ keystone.set('email rules', [{
 keystone.set('email tests', require('./routes/emails'));
 
 // Configure the navigation bar in Keystone's Admin UI
-
 keystone.set('nav', {
                 'Empresa': 'empresas',
                 'Oportunidades': 'oportunidades',
@@ -130,5 +124,4 @@ keystone.set('google api key', process.env.GOOGLE_API_KEY);
 keystone.set('google server api key', process.env.GOOGLE_SERVER_API_KEY);
 
 // Start Keystone to connect to your database and initialise the web server
-
 keystone.start();

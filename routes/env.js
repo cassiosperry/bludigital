@@ -2,6 +2,7 @@
 module.exports = (function() {
 
   var env = {};
+  /*
   var cloudant = {};
   
   env.port = process.env.PORT || 3000;
@@ -22,7 +23,7 @@ module.exports = (function() {
     var protocolo = env.db.port == 443 ? 'https://' : 'http://';
     return protocolo + env.db.username + ':' + env.db.password + '@' + env.db.hostname + ':' + env.db.port;
   };
-
+  */
   //console.log('Configuração: %j', env);
   return env;
 }());
