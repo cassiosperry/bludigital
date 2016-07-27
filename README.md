@@ -23,7 +23,7 @@ Há várias formas de colocar o ambiente em funcionamento. Nesse tutorial iremos
 ![Criar Projeto do Github](readme/criar_projeto_jazz.png?raw=true "Criar Projeto do Github")
 
 3. Marque que este será um projeto Bluemix <br />
-4. Selecione o espaço *bludigital*
+4. Selecione o espaço *bludigital*<br />
 ![Selecionar espaço](readme/selecionar_espaco.png?raw=true "Selecionar espaço")
 
 5. Pelo ambiente de desenvolvimento do Jazz, selecione seu novo projeto e clique em "EDIT CODE" <br />
