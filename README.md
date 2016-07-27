@@ -17,12 +17,27 @@ Há várias formas de colocar o ambiente em funcionamento. Nesse tutorial iremos
 
 ## Preparação no Bluemix
 1. Acesse o [IBM Bluemix](bluemix.net) e crie um novo espaço chamado *bludigital*
+![Criar Espaço](readme/criar_espaco.png?raw=true "Criar Espaço")
+
 2. Acesse o [Hub Jazz](https://hub.jazz.net) e crie um novo projeto a partir do github
+![Criar Projeto do Github](readme/criar_projeto_jazz.png?raw=true "Criar Projeto do Github")
+
 3. Marque que este será um projeto Bluemix
 4. Selecione o espaço *bludigital*
+![Selecionar espaço](readme/selecionar_espaco.png?raw=true "Selecionar espaço")
+
 5. Pelo ambiente de desenvolvimento do Jazz, selecione seu novo projeto e clique em "EDIT CODE"
+![Edit Code](readme/edit_code.png?raw=true "Edit Code")
+
 6. Altere o arquivo *.env* com as informações de API Key e URL do MongoDB.
+
 7. Clique no botão deploy e crie um configuração de lauch do seu aplicativo.
+![Deploy - Launcher](readme/launcher.png?raw=true "Deploy - Launcher")
+
+9. Acesse a URL do seu aplicativo e faça os ajustes necessários.
+
+10. Se necessário, acesse o ambiente do seu aplicativo e veja os logs do mesmo (Painel, Apps, bludigital)
+![logs(readme/logs.png?raw=true "Logs")
 
 ## Sobre a aplicação
 O arquivo *.env* pode ser usado para armazenar chaves de serviços externos. Idealmente você não deve fazer commit desse arquivo com dados de produção. Uma alternativa é usar as variáveis de ambiente do Bluemix.
