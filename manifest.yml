@@ -6,5 +6,3 @@ applications:
   name: bludigital
   host: bludigital
   disk_quota: 512M
-#  services:
-#  - bludigital-cloudant 
