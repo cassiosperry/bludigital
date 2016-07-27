@@ -7,8 +7,6 @@ var keystone = require('keystone');
 //database
 var mongoUri;
 
-console.log(process.env.VCAP_SERVICES);
-
 if (process.env.VCAP_SERVICES) {
    mongoUri = process.env.BLUEMIX_MONGODB_URL;
 } else {
@@ -36,7 +34,7 @@ keystone.init({
     'user model': 'Usuario',
     'cookie secret': process.env.COOKIE_SECRET || 'demo'
     //,
-    //'ga property': 'UA-73901933-1',
+    //'ga property': '',
     //'ga domain': 'auto',
     //'chartbeat property': process.env.CHARTBEAT_PROPERTY || undefined,
     //'chartbeat domain': process.env.CHARTBEAT_DOMAIN || undefined

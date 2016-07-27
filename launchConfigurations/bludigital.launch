@@ -6,12 +6,7 @@
       "Org": "research_org",
       "Space": "bludigital"
     },
-    "Name": "bludigital",
-    "Instrumentation": {
-      "services": [
-        "bludigital-cloudant"
-      ]
-    }
+    "Name": "bludigital"
   },
   "Path": "manifest.yml",
   "Type": "Cloud Foundry"
