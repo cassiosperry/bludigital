@@ -9,7 +9,7 @@
 
 exports.create = {
 	Usuario: [
-		{ 'name.first': 'Admin', 'name.last': 'Admin', email: 'research@senior.com.br', password: 'admin', isAdmin: true, },
+		{ 'name.first': 'Admin', 'name.last': 'Admin', email: 'cassio@startupwind.com.br', password: '#blumenaudigital#', isAdmin: true, },
 	]        
 };
 
